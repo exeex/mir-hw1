@@ -5,7 +5,8 @@ from loader import Data
 from concurrent.futures import ProcessPoolExecutor
 
 # from blue_temp import template
-from template import template
+# from template import template
+from KS_temp import template
 
 
 def R(x: np.ndarray, y: np.ndarray):
@@ -41,13 +42,15 @@ def match_key(au, sr, gamma):
 
     result = np.array([R(template[k], vector) for k in range(24)])
 
-    major = result[tone]
-    minor = result[tone + 12]
+    return (result.argmax()+3) % 24
 
-    if major > minor:
-        return (result.argmax() + 3) % 12  # convert to gtzan key
-    else:
-        return (result.argmax() + 3) % 12 + 12  # convert to gtzan key
+    # major = result[tone]
+    # minor = result[tone + 12]
+    #
+    # if major > minor:
+    #     return (result.argmax() + 3) % 12  # convert to gtzan key
+    # else:
+    #     return (result.argmax() + 3) % 12 + 12  # convert to gtzan key
 
 
 def q3_score(ans, preds):
