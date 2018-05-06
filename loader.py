@@ -13,7 +13,6 @@ class Data():
 
         self.au_path = au_path
         self.txt_path = txt_path
-
         self.genre = genre
 
         au = os.listdir(os.path.join(au_path,genre))
@@ -21,6 +20,7 @@ class Data():
         au  = sorted(au)
         txt = sorted(txt)
         self.data = list(zip(au, txt))
+        self.len = len(self.data)
 
     def __getitem__(self, idx):
 
