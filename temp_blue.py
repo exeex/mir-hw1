@@ -48,6 +48,5 @@ gamma = 1000
 ------------------------------------------
 
 
-Process finished with exit code 0
 
 '''

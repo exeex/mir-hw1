@@ -2,14 +2,14 @@ import os
 import librosa
 
 genres = ['pop', 'blues', 'metal', 'rock', 'hiphop']
-rootPath = os.path.abspath('..')
 
 
 class Data():
 
     def __init__(self, genre,
-                 au_path=rootPath + "/MIRdata/genres",
-                 txt_path=rootPath + "/MIRdata/gtzan_key-master/gtzan_key/genres", ):
+                 au_path="data/gtzan",
+                 txt_path="data/gtzan_key/gtzan_key/genres", ):
+
         self.au_path = au_path
         self.txt_path = txt_path
         self.genre = genre
@@ -23,16 +23,16 @@ class Data():
 
     def __getitem__(self, idx):
         au_file, txt_file = self.data[idx]
-        au_file = os.path.join(self.au_path, self.genre, au_file)
-        txt_file = os.path.join(self.txt_path, self.genre, txt_file)
+        au_file_path = os.path.join(self.au_path, self.genre, au_file)
+        txt_file_path = os.path.join(self.txt_path, self.genre, txt_file)
 
-        au, sr = librosa.load(au_file)
+        au, sr = librosa.load(au_file_path)
 
-        with open(txt_file, mode='r') as f:
+        with open(txt_file_path, mode='r') as f:
             key = f.readline()
             key = int(key)
 
-        return au, sr, key
+        return au, sr, key, au_file
 
 
 d = Data('pop')
