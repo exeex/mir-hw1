@@ -5,7 +5,7 @@ from loader import Data
 from concurrent.futures import ProcessPoolExecutor
 
 # from blue_temp import template
-# from template import template
+# from temp_classic import template
 from temp_KS import template
 
 
