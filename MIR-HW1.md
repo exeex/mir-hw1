@@ -1,10 +1,10 @@
 # MIR HW1
-Q1~Q4 程式碼在：
-key_detector.py     Q1~Q5
-loader.py
-temp_blue.py         Q5
-temp_classic.py     Q1~Q3
-temp_KS.py            Q4
+Q1~ Q4 程式碼在：
+key_detector.py     Q1~ Q5  
+loader.py  
+temp_blue.py         Q5  
+temp_classic.py     Q1~ Q3  
+temp_KS.py            Q4  
 
 # Q1
 
