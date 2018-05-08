@@ -4,11 +4,15 @@ import librosa
 from loader import Data
 from concurrent.futures import ProcessPoolExecutor
 
+
+## Key template
+
 # from blue_temp import template
-# from temp_classic import template
-from temp_KS import template
+# from temp_classic import template     #template for Q1~Q3
+from temp_KS import template            #template for Q4~Q5
 
 
+## Relation Coffeicent
 def R(x: np.ndarray, y: np.ndarray):
     """
     :param x: template or chroma vector
@@ -22,7 +26,7 @@ def R(x: np.ndarray, y: np.ndarray):
 
     return a / (b1 * b2)
 
-
+## Key match algorithm
 def match_key(au, sr, gamma):
     """
     :param au: audio file
@@ -38,21 +42,12 @@ def match_key(au, sr, gamma):
 
     vector = np.sum(chroma, axis=1)
 
-    tone = vector.argmax()
-
     result = np.array([R(template[k], vector) for k in range(24)])
 
     return (result.argmax()+3) % 24
 
-    # major = result[tone]
-    # minor = result[tone + 12]
-    #
-    # if major > minor:
-    #     return (result.argmax() + 3) % 12  # convert to gtzan key
-    # else:
-    #     return (result.argmax() + 3) % 12 + 12  # convert to gtzan key
 
-
+## another acc for Q3
 def q3_score(ans, preds):
     new_accuracy = 0
 
@@ -89,7 +84,6 @@ def q3_score(ans, preds):
 if __name__ == "__main__":
 
 
-
     genres = ['pop', 'blues', 'metal', 'rock', 'hiphop']
 
     for gamma in [1, 10, 100, 1000]:
@@ -120,9 +114,11 @@ if __name__ == "__main__":
             aucs_q1.append(auc_q1)
 
 
-        result_q1 = list(zip(genres, aucs_q1))
-        result = list(zip(genres, aucs))
+        result_q1 = list(zip(genres, aucs_q1))          #q1 acc
+        result = list(zip(genres, aucs))                #q3 acc
+        print("Q1:")
         print(result_q1)
+        print("Q3:")
         print(result)
 
 
